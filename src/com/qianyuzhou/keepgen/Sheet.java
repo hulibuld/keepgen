@@ -117,6 +117,21 @@ final class Sheet {
                     panel.getLocationOnScreen(loc);
                     int panelTop = loc[1] - (int) panel.getTranslationY();
                     int panelBottom = panelTop + panel.getHeight();
+
+                    // 先判断「键盘到底起了没有」：窗口可见区比根视图矮一大截才算键盘。
+                    // 之前直接拿「面板底部超出可见区」当判据，界面一长就把内容区限高成半屏 ——
+                    // 用户看到的就是「弹层只有半屏，剩下的要滑」。
+                    int ime = overlay.getRootView().getHeight() - r.bottom;
+                    boolean keyboardUp = ime > Ui.dp(act, 120);
+                    if (!keyboardUp) {
+                        if (panel.getTranslationY() != 0) panel.setTranslationY(0);
+                        android.view.ViewGroup.LayoutParams lp0 = scroller.getLayoutParams();
+                        if (lp0.height != android.view.ViewGroup.LayoutParams.WRAP_CONTENT) {
+                            lp0.height = android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+                            scroller.setLayoutParams(lp0);
+                        }
+                        return;
+                    }
                     int overflow = panelBottom - r.bottom;
                     if (overflow > Ui.dp(act, 4)) {
                         panel.setTranslationY(-overflow);

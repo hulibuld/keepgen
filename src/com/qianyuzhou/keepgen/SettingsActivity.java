@@ -35,6 +35,7 @@ public final class SettingsActivity extends Activity {
         super.onCreate(b);
         Ui.applyTheme(this);
         setContentView(build());
+        a11yShown = KeepAuto.enabled(this);
         applySystemBars();
     }
 
@@ -94,7 +95,8 @@ public final class SettingsActivity extends Activity {
                 "允许把生成的数据写进手机健康应用", hcVal, true,
                 hcOk ? v -> startActivity(new Intent(SettingsActivity.this, HcPermActivity.class)) : null);
         actionTile(root, "ic_settings", Ui.ACCENT, Ui.ACCENT_SOFT, "自动导入 Keep",
-                "开无障碍服务，生成后自动跳转导入", "去开启", true, v -> {
+                "开无障碍服务，生成后自动跳转导入",
+                KeepAuto.enabled(this) ? "已开启" : "去开启", true, v -> {
                     try {
                         startActivity(new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS));
                     } catch (Exception e) {
@@ -545,8 +547,23 @@ public final class SettingsActivity extends Activity {
                 });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 用户可能刚从系统的无障碍设置里回来，状态要重算一次
+        boolean now = KeepAuto.enabled(this);
+        if (now != a11yShown) {
+            a11yShown = now;
+            rebuild();
+        }
+    }
+
+    /** 上一次画出来的无障碍状态，用来判断需不需要重建 */
+    private boolean a11yShown;
+
     private void rebuild() {
         setContentView(build());
+        a11yShown = KeepAuto.enabled(this);
         applySystemBars();
     }
 

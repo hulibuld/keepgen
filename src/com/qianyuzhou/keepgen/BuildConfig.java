@@ -2,8 +2,8 @@ package com.qianyuzhou.keepgen;
 
 /** 构建期常量。改版本号时同步改 AndroidManifest.xml 的 versionCode。 */
 final class BuildConfig {
-    static final int VERSION_CODE = 149;
-    static final String VERSION_NAME = "31.5";
+    static final int VERSION_CODE = 156;
+    static final String VERSION_NAME = "32.6";
     /** 包名。更新包校验时用来确认下到的确实是本应用 */
     static final String PACKAGE = "com.qianyuzhou.keepgen";
 

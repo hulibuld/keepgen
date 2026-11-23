@@ -88,6 +88,7 @@ public class MainActivity extends Activity {
         setContentView(buildUi());
         applySystemBars();
         installImeScroll();
+
         restoreFormState(b);
         KeepApi.initUa(this);
         syncKeepBar();
@@ -2638,12 +2639,10 @@ public class MainActivity extends Activity {
         activeSheet = s;
         s.title("解锁 · 1 元永久", "一次付费，这台设备永久可用");
 
-        s.text("点下面的「去购买」会打开爱发电的购买页，付完平台会自动发一串解锁码给你。"
-                + "拿到码之后回到这里填进去。");
-        s.spacer(dp(8));
-        s.text("兑换需要联网一次，兑完就能离线用，不限时间。");
+        s.text("点「去购买」打开爱发电，付完会发一串解锁码给你，回到这里填进去。"
+                + "兑一次联网，之后离线也能用。");
 
-        s.spacer(dp(12));
+        s.spacer(dp(10));
         final EditText et = new EditText(this);
         et.setHint("粘贴或输入解锁码");
         et.setTextSize(15);

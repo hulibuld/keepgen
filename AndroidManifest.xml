@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.qianyuzhou.keepgen"
-    android:versionCode="149"
-    android:versionName="31.5">
+    android:versionCode="156"
+    android:versionName="32.6">
 
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
 

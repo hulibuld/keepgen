@@ -107,17 +107,47 @@ public class KeepAuto extends AccessibilityService {
 
     private static boolean isEnabledInSettings() {
         android.content.Context c = ctx();
+        return c != null && enabled(c);
+    }
+
+    /**
+     * 这个无障碍服务现在是不是真的开着。
+     *
+     * 两条路都走，因为系统里「开着」有两种写法：
+     *   · 设置项 ENABLED_ACCESSIBILITY_SERVICES 里可能写成 "pkg/pkg.Class"，也可能写成 "pkg/.Class"；
+     *     原来只匹配 "pkg.Class" 这一种，用 ".Class" 写法时就永远判成没开 —— 用户明明给了权限，
+     *     界面还显示「去开启」，这就是那个 bug。
+     *   · 更要紧的是 AccessibilityManager 的实时列表：它反映系统真的绑上了服务，不受写法影响。
+     */
+    static boolean enabled(android.content.Context c) {
         if (c == null) return false;
+        try {
+            android.view.accessibility.AccessibilityManager am =
+                    (android.view.accessibility.AccessibilityManager)
+                            c.getSystemService(android.content.Context.ACCESSIBILITY_SERVICE);
+            if (am != null) {
+                java.util.List<android.accessibilityservice.AccessibilityServiceInfo> l =
+                        am.getEnabledAccessibilityServiceList(
+                                android.accessibilityservice.AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+                if (l != null) {
+                    for (android.accessibilityservice.AccessibilityServiceInfo i : l) {
+                        String id = i.getId();          // 形如 "pkg/pkg.Class"
+                        if (id != null && id.startsWith(c.getPackageName())) return true;
+                    }
+                }
+            }
+        } catch (Throwable ignored) {}
         try {
             String on = android.provider.Settings.Secure.getString(
                     c.getContentResolver(),
                     android.provider.Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
             if (on == null) return false;
-            // 列表形如 "pkg/pkg.Cls:pkg2/pkg2.Cls2"，用短名匹配更稳
-            return on.contains("com.qianyuzhou.keepgen.KeepAuto");
-        } catch (Exception e) {
-            return false;
-        }
+            String pkg = c.getPackageName();
+            return on.contains(pkg + "/" + pkg + ".KeepAuto")
+                    || on.contains(pkg + "/.KeepAuto")
+                    || on.contains(pkg + ".KeepAuto");
+        } catch (Throwable ignored) {}
+        return false;
     }
 
     /**

@@ -8,7 +8,7 @@ package com.qianyuzhou.keepgen;
  * 不依赖安装时间、首次启动时间，也不吃「清应用数据」这套。
  */
 final class BuildStamp {
-    static final long BUILD_EPOCH_MS = 1795420944183L;
-    static final String BUILD_UTC = "2026-11-23T08:02:24Z";
+    static final long BUILD_EPOCH_MS = 1795454516003L;
+    static final String BUILD_UTC = "2026-11-23T17:21:56Z";
     private BuildStamp() {}
 }
