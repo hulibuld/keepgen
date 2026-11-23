@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>登录 Keep</title>
+<style>
+  :root{ --brand:#00C08B; --ink:#12161c; --sub:#8b93a1; --line:#e6e9ef; --bg:#ffffff; }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; padding:28px 22px 40px; background:var(--bg); color:var(--ink);
+        font:15px/1.6 -apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif; }
+  h1{ font-size:22px; margin:6px 0 6px; letter-spacing:.5px; }
+  .sub{ color:var(--sub); font-size:13px; margin-bottom:26px; }
+  label{ display:block; font-size:13px; color:var(--sub); margin:16px 0 6px; }
+  input{ width:100%; padding:14px 14px; font-size:16px; border:1px solid var(--line);
+         border-radius:12px; outline:none; background:#fafbfc; }
+  input:focus{ border-color:var(--brand); background:#fff; }
+  button{ width:100%; margin-top:22px; padding:15px; font-size:16px; font-weight:600;
+          color:#fff; background:var(--brand); border:0; border-radius:12px; }
+  button:disabled{ opacity:.55; }
+  .msg{ min-height:22px; margin-top:14px; font-size:13px; color:#d33; }
+  .tip{ margin-top:26px; font-size:12.5px; color:var(--sub); line-height:1.7; }
+  .fold{ margin-top:18px; border-top:1px solid var(--line); padding-top:14px; }
+  .fold summary{ font-size:13px; color:var(--brand); cursor:pointer; list-style:none; }
+  .fold summary::-webkit-details-marker{ display:none; }
+  .fold p{ font-size:12.5px; color:var(--sub); margin:8px 0 0; }
+  .ghost{ background:transparent; color:var(--sub); font-weight:400; margin-top:10px; }
+</style>
+</head>
+<body>
+  <h1>登录 Keep</h1>
+  <div class="sub">登录后，生成的运动记录可以直接写进你的 Keep 账号，不用再导出文件手动导入。</div>
+
+  <label for="m">手机号</label>
+  <input id="m" type="tel" inputmode="numeric" maxlength="11" placeholder="Keep 注册的手机号">
+
+  <label for="p">密码</label>
+  <input id="p" type="password" placeholder="Keep 账号密码">
+
+  <button id="go" onclick="doLogin()">登录</button>
+  <div class="msg" id="msg"></div>
+
+  <details class="fold">
+    <summary>没有密码 / 忘了密码？</summary>
+    <p>请先打开 Keep 官方 App，在「我的 → 设置 → 账号与安全」里设置一个密码，再回来登录。
+       如果 Keep 要求短信验证码，说明触发了它的风控，换用手机流量再试一次。</p>
+  </details>
+
+  <div class="tip">
+    你的手机号和密码只用于向 Keep 换取登录凭证，凭证存在本机，不会发给我们自己的服务器。
+  </div>
+
+<script>
+  function doLogin(){
+    var m = document.getElementById('m').value.trim();
+    var p = document.getElementById('p').value;
+    var msg = document.getElementById('msg');
+    var btn = document.getElementById('go');
+    msg.textContent = '';
+    if(!/^1\d{10}$/.test(m)){ msg.textContent = '手机号看起来不对，应该是 11 位'; return; }
+    if(p.length < 6){ msg.textContent = '密码至少 6 位'; return; }
+    btn.disabled = true; btn.textContent = '登录中…';
+    try { KG.login(m, p); } catch(e){ onFail('调用登录失败：' + e); }
+  }
+  function onOk(){ document.getElementById('msg').style.color = '#00a87a';
+                   document.getElementById('msg').textContent = '登录成功'; }
+  function onFail(t){
+    var msg = document.getElementById('msg'); var btn = document.getElementById('go');
+    btn.disabled = false; btn.textContent = '登录';
+    msg.style.color = '#d33';
+    msg.textContent = t || '登录失败，请检查手机号和密码';
+  }
+</script>
+</body>
+</html>

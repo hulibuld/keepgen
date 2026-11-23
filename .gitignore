@@ -1,0 +1,12 @@
+build/
+build 2/
+out/
+out_pkg/
+*.apk
+*.jks
+*.keystore
+codes*.txt
+codes*.json
+index*.json
+*.args
+.DS_Store

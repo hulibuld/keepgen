@@ -1,0 +1,129 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.qianyuzhou.keepgen"
+    android:versionCode="149"
+    android:versionName="31.5">
+
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <!-- Health Connect（Android 14+）写入权限。授权动作在系统「健康数据」界面里完成，
+         App 内 requestPermissions 对它们无效，所以只声明、不弹窗。 -->
+    <uses-permission android:name="android.permission.health.WRITE_EXERCISE" />
+    <uses-permission android:name="android.permission.health.WRITE_EXERCISE_ROUTE" />
+    <uses-permission android:name="android.permission.health.WRITE_DISTANCE" />
+    <uses-permission android:name="android.permission.health.WRITE_TOTAL_CALORIES_BURNED" />
+    <uses-permission android:name="android.permission.health.WRITE_SPEED" />
+    <uses-permission android:name="android.permission.health.WRITE_STEPS" />
+
+    <!--
+      只声明「我要查这两个包」，而不是申请 QUERY_ALL_PACKAGES。
+      红队 2026-11-22（F4）用 A/B 实测：没有这段时 getLaunchIntentForPackage
+      返回 null、createPackageContext 抛 NameNotFoundException；加了立刻成功。
+      一行 manifest 完全替代全量包列表权限。
+    -->
+    <queries>
+        <package android:name="com.gotokeep.keep" />
+        <package android:name="com.google.android.documentsui" />
+        <!-- Health Connect 设置页要能被 resolve 到，否则 startActivity 抛 ActivityNotFoundException -->
+        <intent>
+            <action android:name="android.health.connect.action.HEALTH_HOME_SETTINGS" />
+        </intent>
+    </queries>
+
+    <application
+        android:usesCleartextTraffic="false"
+        android:label="运动数据生成"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Health Connect 的「权限说明 / 权限用途」页。两个入口都指向同一个 Activity：
+             ① SHOW_PERMISSIONS_RATIONALE：HC 里点本应用会打开它
+             ② VIEW_PERMISSION_USAGE：系统「权限使用情况」页会打开它 -->
+        <activity
+            android:name=".HcPermActivity"
+            android:exported="true"
+            android:label="写入健康数据"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.health.connect.action.SHOW_PERMISSIONS_RATIONALE" />
+            </intent-filter>
+        </activity>
+        <activity-alias
+            android:name="ViewPermissionUsageActivity"
+            android:targetActivity=".HcPermActivity"
+            android:exported="true"
+            android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
+                <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- App 内登录 Keep（自建页面 + 原生发请求） -->
+        <activity
+            android:name=".KeepLoginActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden" 
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden" 
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".BatchActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden" 
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".KeepListActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden" 
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 自动导入 Keep：界面树 + 手势点击 -->
+        <service
+            android:name=".KeepAuto"
+            android:exported="true"
+            android:label="@string/a11y_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/a11y_service" />
+        </service>
+
+        <provider
+            android:name=".ApkProvider"
+            android:authorities="com.qianyuzhou.keepgen.apk"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+    </application>
+</manifest>
