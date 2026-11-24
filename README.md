@@ -1,6 +1,12 @@
 # 运动数据生成
 
-为 Keep 生成 FIT / TCX 运动数据文件的 Android 应用。填距离、配速（或总时长）、开跑时间，
+为 Keep 生成 FIT / TCX 运动数据文件的 Android 应用，以及把同一件事做到 Apple「健康」的 iOS 应用。
+
+| 平台 | 语言与框架 | 包 | 文档 |
+|---|---|---|---|
+| Android | Java + 自绘界面 | `keepgen-32.6.apk`（338 KB） | 本文 |
+| iOS | Swift + SwiftUI（无第三方依赖） | `KeepGen-1.0.0-unsigned.ipa` / `-adhoc.ipa`（942 KB / 964 KB） | [README-iOS.md](README-iOS.md) |
+填距离、配速（或总时长）、开跑时间，
 生成一份标准格式的运动数据：可以导出到手机、可以写进 Keep 账号、也可以写进手机的
 Health Connect。
 
@@ -43,6 +49,12 @@ src/com/qianyuzhou/keepgen/
   License / Redeem      授权与兑换码
   Ui / Sheet            设计系统与底部弹层
 ```
+
+## iOS 版
+
+`ios/` 是独立的 SwiftUI 工程，Mac 上 `brew install xcodegen && cd ios && ./build-ipa.sh` 出包。它把同一套生成算法搬到 Apple「健康」：`HKWorkout` + 距离/能量/步数/心率序列 + `HKWorkoutRoute`。心率同样是 Karvonen 心率储备法（与 `HrProfile.java` 同一套公式）。iOS 上**没有**登录 Keep 直写、没有无障碍自动导入、没有 FIT/TCX/GPX 导出——原因和替代做法写在 [README-iOS.md](README-iOS.md)。
+
+---
 
 ## 关于授权
 

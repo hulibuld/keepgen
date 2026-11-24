@@ -1,0 +1,702 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0167B7D1923292BE4CB1AC4D /* GenerateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8228E8E5FDA9282D02AF260 /* GenerateView.swift */; };
+		021EE0367580E60500BDE5CF /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B9B4A5DE2D026DED02877 /* RouteView.swift */; };
+		0D752085858F8368FB273E4C /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E4DCAC770CC8BF2E1697F /* Generator.swift */; };
+		1F09C2FCE8A3CEFA90642612 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D38FE1587693BDD941DAB9 /* History.swift */; };
+		292E64F1B9C73E677F761A09 /* KeepGenUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C7877BB497D8E9BAD591C567 /* KeepGenUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E884FB3F4414545749AF7EC /* KeepGen.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 7B54CAFAF17F1EB93B69F0EE /* KeepGen.entitlements */; };
+		30F362817383B010D9D33591 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50BB37CD7485DCA18F2411B5 /* Assets.xcassets */; };
+		41DB42E20AFB46D2C08F922C /* KeepGenCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AAE0586ADC82097794B6458 /* KeepGenCore.framework */; };
+		4FD21959A0D210843F27AFC9 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697EE63F73F428B937A85046 /* HistoryView.swift */; };
+		611D9CBBD393F5794D114C34 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935641973C641C42FABACD8F /* RootView.swift */; };
+		68719CD765CE411C21DCAF14 /* RouteLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE37C4F540D40DF4FDE8F37C /* RouteLibrary.swift */; };
+		6A633EAA30F5B4681B4D8DE2 /* KeepGenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BED59DC5B2108EF90125A35 /* KeepGenApp.swift */; };
+		6C09130F53574D872CEFE23B /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0FBB1064E21DC7E70B73E /* Models.swift */; };
+		7A234657B818E1CE90AACE36 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E270A402B732E0B4FD3573F7 /* HealthKit.framework */; };
+		846D5E6943899DC8452A29D9 /* Quota.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9221B5A26DC329A9C7E80C7A /* Quota.swift */; };
+		8886868712CC5585AA3DA5E9 /* BatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202C2B3769AB8CF88E99509 /* BatchView.swift */; };
+		89BC9488912A7897D833D5F9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E270A402B732E0B4FD3573F7 /* HealthKit.framework */; };
+		9530E982C4594740B21BEBD5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EE4231525FE381F92CA16D /* CoreLocation.framework */; };
+		AC00F3C4883C4EDEFEC9EC36 /* KeepGenCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AAE0586ADC82097794B6458 /* KeepGenCore.framework */; };
+		BC2E8AD661A2538A19194C0E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35674A506D3DA9BDC4D095C /* SettingsView.swift */; };
+		C47BA564EA99D5AFE918B1D9 /* KeepGenCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AAE0586ADC82097794B6458 /* KeepGenCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D29ED1E7488B050A0FF78B13 /* KeepGenUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7877BB497D8E9BAD591C567 /* KeepGenUI.framework */; };
+		D68C743A7528FE9A3CACC0CC /* HrProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696C91966A8B54091C40E51 /* HrProfile.swift */; };
+		DC0BF7AE93660961DB39D022 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25825DF145C0DC6740597058 /* Theme.swift */; };
+		E01F267875FBE7623E2C3219 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEF7811D0ADBF7AD20378DD /* Settings.swift */; };
+		FD871DB68E23E9B441C2C84D /* HealthWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FCD81DC4343B8E3998DD20 /* HealthWriter.swift */; };
+		FF7872DBB79EA1E9E3A7AC16 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D0DB07D27E34FADB215E09 /* SwiftUI.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		300658A141356D639BF2D04D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3A543759BB41B29818571BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 298FAD6C6D7BDD282DD13E85;
+			remoteInfo = KeepGenUI;
+		};
+		96454FA095ED25E5E9D2970E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3A543759BB41B29818571BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B4544F6B17764057B7DD41F;
+			remoteInfo = KeepGenCore;
+		};
+		CCB31A9F64141E861D668BF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3A543759BB41B29818571BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B4544F6B17764057B7DD41F;
+			remoteInfo = KeepGenCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E1250583B0271FBA76B88767 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				292E64F1B9C73E677F761A09 /* KeepGenUI.framework in Embed Frameworks */,
+				C47BA564EA99D5AFE918B1D9 /* KeepGenCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0BED59DC5B2108EF90125A35 /* KeepGenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepGenApp.swift; sourceTree = "<group>"; };
+		186E4DCAC770CC8BF2E1697F /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		20A0FBB1064E21DC7E70B73E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		25825DF145C0DC6740597058 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		29EE4231525FE381F92CA16D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		41FCD81DC4343B8E3998DD20 /* HealthWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthWriter.swift; sourceTree = "<group>"; };
+		50BB37CD7485DCA18F2411B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		58052FB7B81E34B5B7A4E59F /* KeepGen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KeepGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AAE0586ADC82097794B6458 /* KeepGenCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeepGenCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		697EE63F73F428B937A85046 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		6DEF7811D0ADBF7AD20378DD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		7B54CAFAF17F1EB93B69F0EE /* KeepGen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeepGen.entitlements; sourceTree = "<group>"; };
+		835B9B4A5DE2D026DED02877 /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
+		9221B5A26DC329A9C7E80C7A /* Quota.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quota.swift; sourceTree = "<group>"; };
+		935641973C641C42FABACD8F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		A202C2B3769AB8CF88E99509 /* BatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchView.swift; sourceTree = "<group>"; };
+		A3D38FE1587693BDD941DAB9 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		C7877BB497D8E9BAD591C567 /* KeepGenUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeepGenUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D35674A506D3DA9BDC4D095C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D696C91966A8B54091C40E51 /* HrProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HrProfile.swift; sourceTree = "<group>"; };
+		DE37C4F540D40DF4FDE8F37C /* RouteLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLibrary.swift; sourceTree = "<group>"; };
+		E270A402B732E0B4FD3573F7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		E8D0DB07D27E34FADB215E09 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F8228E8E5FDA9282D02AF260 /* GenerateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		65DBC25DD9D857E248E1ED58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29ED1E7488B050A0FF78B13 /* KeepGenUI.framework in Frameworks */,
+				41DB42E20AFB46D2C08F922C /* KeepGenCore.framework in Frameworks */,
+				7A234657B818E1CE90AACE36 /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C12F9FC049680851161C2ADC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89BC9488912A7897D833D5F9 /* HealthKit.framework in Frameworks */,
+				9530E982C4594740B21BEBD5 /* CoreLocation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB55F8A46F2BA279BAD3F487 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC00F3C4883C4EDEFEC9EC36 /* KeepGenCore.framework in Frameworks */,
+				FF7872DBB79EA1E9E3A7AC16 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E026519BB53DC0E574DAC7B /* KeepGenUI */ = {
+			isa = PBXGroup;
+			children = (
+				A202C2B3769AB8CF88E99509 /* BatchView.swift */,
+				F8228E8E5FDA9282D02AF260 /* GenerateView.swift */,
+				697EE63F73F428B937A85046 /* HistoryView.swift */,
+				935641973C641C42FABACD8F /* RootView.swift */,
+				835B9B4A5DE2D026DED02877 /* RouteView.swift */,
+				D35674A506D3DA9BDC4D095C /* SettingsView.swift */,
+				25825DF145C0DC6740597058 /* Theme.swift */,
+			);
+			path = KeepGenUI;
+			sourceTree = "<group>";
+		};
+		8A456CC4772678B320616E85 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B76CEEC14DB2DD4EE104D8E4 /* KeepGenCore */,
+				1E026519BB53DC0E574DAC7B /* KeepGenUI */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8AE974DA2A58C1EE5E771831 = {
+			isa = PBXGroup;
+			children = (
+				EF7731FA15CF71ACA7E4D636 /* App */,
+				8A456CC4772678B320616E85 /* Sources */,
+				E1F0D94F59D50EE404E04D96 /* Frameworks */,
+				9FCD6C85A5B3656EF2293547 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9FCD6C85A5B3656EF2293547 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				58052FB7B81E34B5B7A4E59F /* KeepGen.app */,
+				5AAE0586ADC82097794B6458 /* KeepGenCore.framework */,
+				C7877BB497D8E9BAD591C567 /* KeepGenUI.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B76CEEC14DB2DD4EE104D8E4 /* KeepGenCore */ = {
+			isa = PBXGroup;
+			children = (
+				186E4DCAC770CC8BF2E1697F /* Generator.swift */,
+				41FCD81DC4343B8E3998DD20 /* HealthWriter.swift */,
+				A3D38FE1587693BDD941DAB9 /* History.swift */,
+				D696C91966A8B54091C40E51 /* HrProfile.swift */,
+				20A0FBB1064E21DC7E70B73E /* Models.swift */,
+				9221B5A26DC329A9C7E80C7A /* Quota.swift */,
+				DE37C4F540D40DF4FDE8F37C /* RouteLibrary.swift */,
+				6DEF7811D0ADBF7AD20378DD /* Settings.swift */,
+			);
+			path = KeepGenCore;
+			sourceTree = "<group>";
+		};
+		E1F0D94F59D50EE404E04D96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29EE4231525FE381F92CA16D /* CoreLocation.framework */,
+				E270A402B732E0B4FD3573F7 /* HealthKit.framework */,
+				E8D0DB07D27E34FADB215E09 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF7731FA15CF71ACA7E4D636 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				50BB37CD7485DCA18F2411B5 /* Assets.xcassets */,
+				7B54CAFAF17F1EB93B69F0EE /* KeepGen.entitlements */,
+				0BED59DC5B2108EF90125A35 /* KeepGenApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		298FAD6C6D7BDD282DD13E85 /* KeepGenUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A16AB4B5BF6552D4F4D4115 /* Build configuration list for PBXNativeTarget "KeepGenUI" */;
+			buildPhases = (
+				8D9511116A3E66AD45FF8CEA /* Sources */,
+				DB55F8A46F2BA279BAD3F487 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA503AFE14E89A97D1EE2B3C /* PBXTargetDependency */,
+			);
+			name = KeepGenUI;
+			packageProductDependencies = (
+			);
+			productName = KeepGenUI;
+			productReference = C7877BB497D8E9BAD591C567 /* KeepGenUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7B4544F6B17764057B7DD41F /* KeepGenCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C82D3D8093AC2B0EAC50650 /* Build configuration list for PBXNativeTarget "KeepGenCore" */;
+			buildPhases = (
+				27C67AF1673C50EA313B3DE4 /* Sources */,
+				C12F9FC049680851161C2ADC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeepGenCore;
+			packageProductDependencies = (
+			);
+			productName = KeepGenCore;
+			productReference = 5AAE0586ADC82097794B6458 /* KeepGenCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B14777AB7BC63C4710CDC6C9 /* KeepGen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73684586109703A2897E52B2 /* Build configuration list for PBXNativeTarget "KeepGen" */;
+			buildPhases = (
+				5CDD74A9E355DFAA4006E04C /* Sources */,
+				06B4B50D0F119E7A25285058 /* Resources */,
+				65DBC25DD9D857E248E1ED58 /* Frameworks */,
+				E1250583B0271FBA76B88767 /* Embed Frameworks */,
+				493726D021879FEC1B33C744 /* 把 KeepGen.entitlements 保留进 .app */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4AF5E3E34F00383F7A4868F /* PBXTargetDependency */,
+				1807C6D92622A294086A28DD /* PBXTargetDependency */,
+			);
+			name = KeepGen;
+			packageProductDependencies = (
+			);
+			productName = KeepGen;
+			productReference = 58052FB7B81E34B5B7A4E59F /* KeepGen.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3A543759BB41B29818571BD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 706BF1677B0E6C12F85B39AC /* Build configuration list for PBXProject "KeepGen" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8AE974DA2A58C1EE5E771831;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9FCD6C85A5B3656EF2293547 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B4544F6B17764057B7DD41F /* KeepGenCore */,
+				298FAD6C6D7BDD282DD13E85 /* KeepGenUI */,
+				B14777AB7BC63C4710CDC6C9 /* KeepGen */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		06B4B50D0F119E7A25285058 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30F362817383B010D9D33591 /* Assets.xcassets in Resources */,
+				2E884FB3F4414545749AF7EC /* KeepGen.entitlements in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		493726D021879FEC1B33C744 /* 把 KeepGen.entitlements 保留进 .app */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "把 KeepGen.entitlements 保留进 .app";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp \"${SRCROOT}/App/KeepGen.entitlements\" \"${TARGET_BUILD_DIR}/${WRAPPER_NAME}/KeepGen.entitlements\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27C67AF1673C50EA313B3DE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D752085858F8368FB273E4C /* Generator.swift in Sources */,
+				FD871DB68E23E9B441C2C84D /* HealthWriter.swift in Sources */,
+				1F09C2FCE8A3CEFA90642612 /* History.swift in Sources */,
+				D68C743A7528FE9A3CACC0CC /* HrProfile.swift in Sources */,
+				6C09130F53574D872CEFE23B /* Models.swift in Sources */,
+				846D5E6943899DC8452A29D9 /* Quota.swift in Sources */,
+				68719CD765CE411C21DCAF14 /* RouteLibrary.swift in Sources */,
+				E01F267875FBE7623E2C3219 /* Settings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5CDD74A9E355DFAA4006E04C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A633EAA30F5B4681B4D8DE2 /* KeepGenApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D9511116A3E66AD45FF8CEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8886868712CC5585AA3DA5E9 /* BatchView.swift in Sources */,
+				0167B7D1923292BE4CB1AC4D /* GenerateView.swift in Sources */,
+				4FD21959A0D210843F27AFC9 /* HistoryView.swift in Sources */,
+				611D9CBBD393F5794D114C34 /* RootView.swift in Sources */,
+				021EE0367580E60500BDE5CF /* RouteView.swift in Sources */,
+				BC2E8AD661A2538A19194C0E /* SettingsView.swift in Sources */,
+				DC0BF7AE93660961DB39D022 /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1807C6D92622A294086A28DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B4544F6B17764057B7DD41F /* KeepGenCore */;
+			targetProxy = 96454FA095ED25E5E9D2970E /* PBXContainerItemProxy */;
+		};
+		F4AF5E3E34F00383F7A4868F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 298FAD6C6D7BDD282DD13E85 /* KeepGenUI */;
+			targetProxy = 300658A141356D639BF2D04D /* PBXContainerItemProxy */;
+		};
+		FA503AFE14E89A97D1EE2B3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B4544F6B17764057B7DD41F /* KeepGenCore */;
+			targetProxy = CCB31A9F64141E861D668BF7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00A6C7D9A92B99297A066C99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen.ui;
+				PRODUCT_NAME = KeepGenUI;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		60D7066774A7FD1B090763AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		68B5936AB2CABBD727E28560 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen;
+				PRODUCT_NAME = KeepGen;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7CBDA3879CE08A2C5AABCD12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		B958F11B4B9FE92F84B5F295 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen.core;
+				PRODUCT_NAME = KeepGenCore;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		CA9A6C97B0E5207FA015A2BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen.ui;
+				PRODUCT_NAME = KeepGenUI;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		CB3F929F37FFBECEC5BB9CBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen;
+				PRODUCT_NAME = KeepGen;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EE4EAA0C01DF8A5280F89E02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen.core;
+				PRODUCT_NAME = KeepGenCore;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A16AB4B5BF6552D4F4D4115 /* Build configuration list for PBXNativeTarget "KeepGenUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA9A6C97B0E5207FA015A2BF /* Debug */,
+				00A6C7D9A92B99297A066C99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1C82D3D8093AC2B0EAC50650 /* Build configuration list for PBXNativeTarget "KeepGenCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE4EAA0C01DF8A5280F89E02 /* Debug */,
+				B958F11B4B9FE92F84B5F295 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		706BF1677B0E6C12F85B39AC /* Build configuration list for PBXProject "KeepGen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CBDA3879CE08A2C5AABCD12 /* Debug */,
+				60D7066774A7FD1B090763AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		73684586109703A2897E52B2 /* Build configuration list for PBXNativeTarget "KeepGen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB3F929F37FFBECEC5BB9CBD /* Debug */,
+				68B5936AB2CABBD727E28560 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A3A543759BB41B29818571BD /* Project object */;
+}
