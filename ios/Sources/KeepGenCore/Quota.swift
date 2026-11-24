@@ -18,11 +18,11 @@ public struct QuotaState: Hashable, Sendable {
     public var isExhausted: Bool { remaining <= 0 }
 }
 
-/// 本地限流：每天最多生成 20 条，按自然日重置，计数落 `UserDefaults`。
+/// 本地限流：每天最多生成 50 条，按自然日重置，计数落 `UserDefaults`。
 public final class QuotaStore: ObservableObject {
 
     public static let shared = QuotaStore()
-    public static let dailyLimit = 20
+    public static let dailyLimit = 50
 
     private enum Key {
         static let day = "keepgen.quota.day"

@@ -203,6 +203,8 @@ public final class BatchModel: ObservableObject {
     @Published public var cadence: Double = 172
     @Published public var weightKg: Double = 62
     @Published public var routeMode: RouteMode = .track
+    /// 轨迹种子基准，每条再按序号错开，避免一批里环线长得一样。
+    @Published public var seed: Int = 7
 
     @Published public var isRunning = false
     @Published public var progress: Double = 0
@@ -229,7 +231,8 @@ public final class BatchModel: ObservableObject {
                                     hrProfile: hrProfile,
                                     cadence: Int(cadence),
                                     weightKg: weightKg,
-                                    routeMode: routeMode))
+                                    routeMode: routeMode,
+                                    seed: seed))
     }
 
     /// 当前三项心率参数（已按 Java sanitize 规则收敛）。
@@ -264,6 +267,14 @@ public final class BatchModel: ObservableObject {
     public func run(settings: AppSettings, quota: QuotaStore) async {
         guard !isRunning else { return }
         cancelRequested = false
+        errorText = nil
+
+        // 未激活：批量参数照常能调，只在真正写入健康这一步拦下来（同 Android 版）。
+        if let denial = LicenseStore.shared.denialMessage() {
+            errorText = denial
+            return
+        }
+
         isRunning = true
         doneCount = 0
         failCount = 0
@@ -303,7 +314,8 @@ public final class BatchModel: ObservableObject {
                                    hrProfile: hrProfile,
                                    cadence: Int(cadence),
                                    weightKg: weightKg,
-                                   routeMode: kind.supportsRoute ? routeMode : .none)
+                                   routeMode: kind.supportsRoute ? routeMode : .none,
+                                   seed: seed + (doneCount + failCount) * 13)
                 if kind == .indoorRun { item.routeMode = .none }
 
                 let result: RunResult

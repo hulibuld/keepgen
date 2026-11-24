@@ -129,7 +129,7 @@ public enum Generator {
         guard plan.kind.supportsRoute, plan.routeMode != .none, distanceMeters > 0 else { return [] }
         switch plan.routeMode {
         case .track:
-            return trackPoints(config: plan.track, distanceMeters: distanceMeters)
+            return trackPoints(config: plan.track, distanceMeters: distanceMeters, seed: plan.seed)
         case .paste:
             return plan.routePoints.isEmpty ? parseCoordinates(plan.pastedCoordinates) : plan.routePoints
         case .library:
@@ -139,28 +139,11 @@ public enum Generator {
         }
     }
 
-    /// 田径场：跑道视为一条闭合圆弧，弧长 = 圈长 × 圈数，按 10 m 一点展开。
-    /// 圆周参数化保证「每点之间的弧长」严格等于距离步长，因此整条轨迹长度 = 输入距离。
-    public static func trackPoints(config: TrackConfig, distanceMeters: Double) -> [RoutePoint] {
-        let lane = max(config.laneLengthMeters, 50)
-        let radius = lane / (2 * .pi)
-        let heading = config.headingDegrees * .pi / 180
-        let metresPerDegreeLat = 111_320.0
-        let latRadians = config.centerLatitude * .pi / 180
-        let metresPerDegreeLng = max(111_320.0 * cos(latRadians), 1)
-
-        let spacing = 10.0
-        var count = Int((distanceMeters / spacing).rounded()) + 1
-        count = min(max(count, 2), 4_000)
-
-        return (0..<count).map { i in
-            let s = min(Double(i) * spacing, distanceMeters)
-            let angle = heading + 2 * .pi * (s / lane)
-            let dLat = radius * cos(angle) / metresPerDegreeLat
-            let dLng = radius * sin(angle) / metresPerDegreeLng
-            return RoutePoint(latitude: config.centerLatitude + dLat,
-                              longitude: config.centerLongitude + dLng)
-        }
+    /// 田径场：移植 Android `Track.java` 的胶囊跑道 + 换道漂移 + 轻微摆动。
+    /// 位置按「已跑距离」参数化，5 m 一点；整圈跑完回到起点，总长与输入距离误差 <1%。
+    public static func trackPoints(config: TrackConfig, distanceMeters: Double, seed: Int = 7) -> [RoutePoint] {
+        TrackShape(config: config, distanceMeters: distanceMeters, seed: seed)
+            .points(distanceMeters: distanceMeters, spacing: 5)
     }
 
     /// 解析「一行一个 lat,lng」。容忍空格、分号、制表符；非法行跳过。

@@ -215,6 +215,8 @@ public struct RunPlan: Codable, Hashable, Sendable {
     public var pastedCoordinates: String
     /// 已解析（粘贴）或已选定（路线库）的坐标。田径场模式忽略它。
     public var routePoints: [RoutePoint]
+    /// 轨迹随机种子：同参数换 seed 得到不同环线。
+    public var seed: Int
 
     public init(kind: ActivityKind = .outdoorRun,
                 startDate: Date = Date(),
@@ -226,7 +228,8 @@ public struct RunPlan: Codable, Hashable, Sendable {
                 routeMode: RouteMode = .track,
                 track: TrackConfig = TrackConfig(),
                 pastedCoordinates: String = "",
-                routePoints: [RoutePoint] = []) {
+                routePoints: [RoutePoint] = [],
+                seed: Int = 7) {
         self.kind = kind
         self.startDate = startDate
         self.durationMinutes = durationMinutes
@@ -238,6 +241,7 @@ public struct RunPlan: Codable, Hashable, Sendable {
         self.track = track
         self.pastedCoordinates = pastedCoordinates
         self.routePoints = routePoints
+        self.seed = seed
     }
 
     public var durationSeconds: Double { max(durationMinutes, 0.1) * 60 }

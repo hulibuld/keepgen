@@ -24,6 +24,7 @@ public struct GenerateView: View {
                 bodyCard
                 routeCard
                 previewCard
+                exportCard
                 actionCard
             }
             .padding(.horizontal, 16)
@@ -216,12 +217,29 @@ public struct GenerateView: View {
                     .foregroundStyle(Theme.dim)
                 Spacer()
                 Text(String(format: "%.2f 圈 / %.0f 点", model.plan.distanceMeters / max(model.trackLaneMeters, 50),
-                            Double(max(Int(model.plan.distanceMeters / 10) + 1, 2))))
+                            Double(max(Int(model.plan.distanceMeters / 5) + 1, 2))))
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundStyle(Theme.accent)
             }
+            HStack(spacing: 10) {
+                Text("轨迹种子")
+                    .font(.system(size: 12))
+                    .foregroundStyle(Theme.dim)
+                Spacer()
+                Text("\(Int(model.seed))")
+                    .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                    .foregroundStyle(Theme.accent)
+                GhostButton("换一条", systemImage: "dice") {
+                    model.shuffleSeed()
+                }
+                .frame(width: 100)
+            }
+            Text("同参数换种子会得到形状不同的环线（换道漂移 / 摆动 / 圈形都不一样）。")
+                .font(.system(size: 10))
+                .foregroundStyle(Theme.faint)
             RouteSketch(points: Generator.trackPoints(config: model.trackConfig,
-                                                      distanceMeters: model.plan.distanceMeters),
+                                                      distanceMeters: model.plan.distanceMeters,
+                                                      seed: Int(model.seed.rounded())),
                         height: 140)
         }
     }
@@ -366,6 +384,51 @@ public struct GenerateView: View {
 
     // MARK: 动作
 
+    private var exportCard: some View {
+        Card {
+            SectionLabel("导出文件")
+            HStack(spacing: 10) {
+                GhostButton("生成导出文件", systemImage: "doc.badge.plus", tint: Theme.accent) {
+                    model.prepareExports()
+                }
+            }
+            if model.exports.isEmpty {
+                Text("TCX / FIT / GPX 三份，纯本地拼装；分享面板里选「存储到文件」即可存进「文件」App。")
+                    .font(.system(size: 10))
+                    .foregroundStyle(Theme.faint)
+            } else {
+                ForEach(model.exports) { file in
+                    ShareLink(item: file.url) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "square.and.arrow.up")
+                                .font(.system(size: 12, weight: .medium))
+                                .foregroundStyle(Theme.accent)
+                            Text(file.name)
+                                .font(.system(size: 11, design: .monospaced))
+                                .foregroundStyle(Theme.ink)
+                                .lineLimit(1)
+                                .truncationMode(.middle)
+                            Spacer(minLength: 6)
+                            Text("\(file.byteCount) B")
+                                .font(.system(size: 10, design: .monospaced))
+                                .foregroundStyle(Theme.faint)
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 8)
+                        .background(Theme.surface2)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            if let error = model.exportError {
+                Text(error)
+                    .font(.system(size: 11))
+                    .foregroundStyle(Theme.danger)
+            }
+        }
+    }
+
     private var actionCard: some View {
         Card {
             PrimaryButton(model.isWriting ? "正在写入健康…" : "生成并写入「健康」",
@@ -424,6 +487,7 @@ public final class GenerateModel: ObservableObject {
 
     @Published public var routeMode: RouteMode = .track
     @Published public var trackLaneMeters: Double = 400
+    @Published public var seed: Double = 7
     @Published public var trackHeading: Double = 0
     @Published public var trackLatitudeText: String = "30.2687"
     @Published public var trackLongitudeText: String = "120.1551"
@@ -434,6 +498,8 @@ public final class GenerateModel: ObservableObject {
 
     @Published public var preview: RunResult?
     @Published public var previewError: String?
+    @Published public var exports: [ExportFile] = []
+    @Published public var exportError: String?
     @Published public var isWriting = false
     @Published public var statusText: String?
     @Published public var errorText: String?
@@ -474,7 +540,8 @@ public final class GenerateModel: ObservableObject {
                 routeMode: kind.supportsRoute ? routeMode : .none,
                 track: trackConfig,
                 pastedCoordinates: pastedText,
-                routePoints: resolvedPoints())
+                routePoints: resolvedPoints(),
+                seed: Int(seed.rounded()))
     }
 
     public var plan: RunPlan { makePlan() }
@@ -516,6 +583,30 @@ public final class GenerateModel: ObservableObject {
         refreshPreview()
     }
 
+    /// 换一条轨迹（种子 +1，回到 1…9999 循环）。
+    public func shuffleSeed() {
+        seed = Double((Int(seed.rounded()) % 9_999) + 1)
+        refreshPreview()
+    }
+
+    /// 生成 TCX / FIT / GPX 三个文件，交给 ShareLink 分享或存到「文件」。
+    public func prepareExports() {
+        exportError = nil
+        let result: RunResult
+        do {
+            result = try preview ?? Generator.generate(makePlan())
+        } catch {
+            exportError = error.localizedDescription
+            return
+        }
+        do {
+            exports = try ExportFormat.allCases.map { try Exporters.write(result, format: $0) }
+        } catch {
+            exports = []
+            exportError = "写导出文件失败：\(error.localizedDescription)"
+        }
+    }
+
     public func refreshPreview() {
         do {
             preview = try Generator.generate(makePlan())
@@ -532,6 +623,12 @@ public final class GenerateModel: ObservableObject {
         guard !isWriting else { return }
         statusText = nil
         errorText = nil
+
+        // 未激活：界面能看、参数能调，只在真正写入健康这一步拦下来（同 Android 版）。
+        if let denial = LicenseStore.shared.denialMessage() {
+            errorText = denial
+            return
+        }
 
         quota.refresh()
         guard quota.canGenerate() else {

@@ -35,31 +35,46 @@ public struct RootView: View {
     @StateObject private var settings = AppSettings.shared
     @StateObject private var quota = QuotaStore.shared
     @State private var tab: Tab = .generate
+    /// 每次现算（验签 + 绑机 + 有效期），不缓存「已激活」布尔值。
+    @State private var license: LicenseState = LicenseStore.shared.state()
+    @State private var showLicense = false
 
     public init() {}
 
     public var body: some View {
         ZStack {
             Theme.bg.ignoresSafeArea()
-            VStack(spacing: 0) {
-                header
-                Group {
-                    switch tab {
-                    case .generate:
-                        GenerateView(settings: settings, quota: quota)
-                    case .batch:
-                        BatchView(settings: settings, quota: quota)
-                    case .routes:
-                        RouteView()
-                    case .settings:
-                        SettingsView(settings: settings, quota: quota)
+            if license.allowsGeneration {
+                VStack(spacing: 0) {
+                    header
+                    Group {
+                        switch tab {
+                        case .generate:
+                            GenerateView(settings: settings, quota: quota)
+                        case .batch:
+                            BatchView(settings: settings, quota: quota)
+                        case .routes:
+                            RouteView()
+                        case .settings:
+                            SettingsView(settings: settings, quota: quota)
+                        }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    tabBar
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                tabBar
+            } else {
+                LicenseGateView(gate: true) {
+                    license = LicenseStore.shared.state()
+                }
             }
         }
         .preferredColorScheme(.dark)
+        .task { license = LicenseStore.shared.state() }
+        .sheet(isPresented: $showLicense) {
+            LicenseGateView(gate: false) {
+                license = LicenseStore.shared.state()
+            }
+        }
     }
 
     private var header: some View {
@@ -73,6 +88,22 @@ public struct RootView: View {
                     .foregroundStyle(Theme.faint)
             }
             Spacer()
+            Button {
+                showLicense = true
+            } label: {
+                HStack(spacing: 5) {
+                    Image(systemName: license.allowsGeneration ? "checkmark.seal.fill" : "lock.fill")
+                        .font(.system(size: 10, weight: .semibold))
+                    Text(license.allowsGeneration ? "已授权" : "未授权")
+                        .font(.system(size: 11, weight: .medium))
+                }
+                .foregroundStyle(license.allowsGeneration ? Theme.ok : Theme.warn)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background(Theme.surface)
+                .clipShape(Capsule())
+            }
+            .buttonStyle(.plain)
             HStack(spacing: 6) {
                 Circle()
                     .fill(quota.state().isExhausted ? Theme.danger : Theme.accent)

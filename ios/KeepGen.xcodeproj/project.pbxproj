@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000F48B6193DAB349513FD8E /* Exporters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A7AC18B98F3A87A068AEC7 /* Exporters.swift */; };
 		0167B7D1923292BE4CB1AC4D /* GenerateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8228E8E5FDA9282D02AF260 /* GenerateView.swift */; };
 		021EE0367580E60500BDE5CF /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B9B4A5DE2D026DED02877 /* RouteView.swift */; };
 		0D752085858F8368FB273E4C /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E4DCAC770CC8BF2E1697F /* Generator.swift */; };
@@ -14,9 +15,11 @@
 		292E64F1B9C73E677F761A09 /* KeepGenUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C7877BB497D8E9BAD591C567 /* KeepGenUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E884FB3F4414545749AF7EC /* KeepGen.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 7B54CAFAF17F1EB93B69F0EE /* KeepGen.entitlements */; };
 		30F362817383B010D9D33591 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50BB37CD7485DCA18F2411B5 /* Assets.xcassets */; };
+		316F19482A4FED5C8D512DDB /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE595FD90D1D29DAA838EEC8 /* License.swift */; };
 		41DB42E20AFB46D2C08F922C /* KeepGenCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AAE0586ADC82097794B6458 /* KeepGenCore.framework */; };
 		4FD21959A0D210843F27AFC9 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697EE63F73F428B937A85046 /* HistoryView.swift */; };
 		611D9CBBD393F5794D114C34 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935641973C641C42FABACD8F /* RootView.swift */; };
+		6705680F02108562FF0ED6A2 /* TrackShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14305AD4BCD1C08655DC897E /* TrackShape.swift */; };
 		68719CD765CE411C21DCAF14 /* RouteLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE37C4F540D40DF4FDE8F37C /* RouteLibrary.swift */; };
 		6A633EAA30F5B4681B4D8DE2 /* KeepGenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BED59DC5B2108EF90125A35 /* KeepGenApp.swift */; };
 		6C09130F53574D872CEFE23B /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0FBB1064E21DC7E70B73E /* Models.swift */; };
@@ -25,8 +28,10 @@
 		8886868712CC5585AA3DA5E9 /* BatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202C2B3769AB8CF88E99509 /* BatchView.swift */; };
 		89BC9488912A7897D833D5F9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E270A402B732E0B4FD3573F7 /* HealthKit.framework */; };
 		9530E982C4594740B21BEBD5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EE4231525FE381F92CA16D /* CoreLocation.framework */; };
+		9561F2B8B9DBCFF4AD7C0C91 /* LicenseGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEB72C15B98A0252F4B5BD8 /* LicenseGateView.swift */; };
 		AC00F3C4883C4EDEFEC9EC36 /* KeepGenCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AAE0586ADC82097794B6458 /* KeepGenCore.framework */; };
 		BC2E8AD661A2538A19194C0E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35674A506D3DA9BDC4D095C /* SettingsView.swift */; };
+		C1FCC075AFCFC318753FD7C6 /* LicenseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4D5BA471DDCF59EB49D5B4 /* LicenseStore.swift */; };
 		C47BA564EA99D5AFE918B1D9 /* KeepGenCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AAE0586ADC82097794B6458 /* KeepGenCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D29ED1E7488B050A0FF78B13 /* KeepGenUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7877BB497D8E9BAD591C567 /* KeepGenUI.framework */; };
 		D68C743A7528FE9A3CACC0CC /* HrProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696C91966A8B54091C40E51 /* HrProfile.swift */; };
@@ -77,10 +82,12 @@
 
 /* Begin PBXFileReference section */
 		0BED59DC5B2108EF90125A35 /* KeepGenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepGenApp.swift; sourceTree = "<group>"; };
+		14305AD4BCD1C08655DC897E /* TrackShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackShape.swift; sourceTree = "<group>"; };
 		186E4DCAC770CC8BF2E1697F /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		20A0FBB1064E21DC7E70B73E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		25825DF145C0DC6740597058 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		29EE4231525FE381F92CA16D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		41A7AC18B98F3A87A068AEC7 /* Exporters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporters.swift; sourceTree = "<group>"; };
 		41FCD81DC4343B8E3998DD20 /* HealthWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthWriter.swift; sourceTree = "<group>"; };
 		50BB37CD7485DCA18F2411B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58052FB7B81E34B5B7A4E59F /* KeepGen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KeepGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,11 +96,14 @@
 		6DEF7811D0ADBF7AD20378DD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		7B54CAFAF17F1EB93B69F0EE /* KeepGen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeepGen.entitlements; sourceTree = "<group>"; };
 		835B9B4A5DE2D026DED02877 /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
+		8C4D5BA471DDCF59EB49D5B4 /* LicenseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseStore.swift; sourceTree = "<group>"; };
+		8CEB72C15B98A0252F4B5BD8 /* LicenseGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseGateView.swift; sourceTree = "<group>"; };
 		9221B5A26DC329A9C7E80C7A /* Quota.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quota.swift; sourceTree = "<group>"; };
 		935641973C641C42FABACD8F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		A202C2B3769AB8CF88E99509 /* BatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchView.swift; sourceTree = "<group>"; };
 		A3D38FE1587693BDD941DAB9 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		C7877BB497D8E9BAD591C567 /* KeepGenUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeepGenUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE595FD90D1D29DAA838EEC8 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 		D35674A506D3DA9BDC4D095C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D696C91966A8B54091C40E51 /* HrProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HrProfile.swift; sourceTree = "<group>"; };
 		DE37C4F540D40DF4FDE8F37C /* RouteLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLibrary.swift; sourceTree = "<group>"; };
@@ -140,6 +150,7 @@
 				A202C2B3769AB8CF88E99509 /* BatchView.swift */,
 				F8228E8E5FDA9282D02AF260 /* GenerateView.swift */,
 				697EE63F73F428B937A85046 /* HistoryView.swift */,
+				8CEB72C15B98A0252F4B5BD8 /* LicenseGateView.swift */,
 				935641973C641C42FABACD8F /* RootView.swift */,
 				835B9B4A5DE2D026DED02877 /* RouteView.swift */,
 				D35674A506D3DA9BDC4D095C /* SettingsView.swift */,
@@ -180,14 +191,18 @@
 		B76CEEC14DB2DD4EE104D8E4 /* KeepGenCore */ = {
 			isa = PBXGroup;
 			children = (
+				41A7AC18B98F3A87A068AEC7 /* Exporters.swift */,
 				186E4DCAC770CC8BF2E1697F /* Generator.swift */,
 				41FCD81DC4343B8E3998DD20 /* HealthWriter.swift */,
 				A3D38FE1587693BDD941DAB9 /* History.swift */,
 				D696C91966A8B54091C40E51 /* HrProfile.swift */,
+				CE595FD90D1D29DAA838EEC8 /* License.swift */,
+				8C4D5BA471DDCF59EB49D5B4 /* LicenseStore.swift */,
 				20A0FBB1064E21DC7E70B73E /* Models.swift */,
 				9221B5A26DC329A9C7E80C7A /* Quota.swift */,
 				DE37C4F540D40DF4FDE8F37C /* RouteLibrary.swift */,
 				6DEF7811D0ADBF7AD20378DD /* Settings.swift */,
+				14305AD4BCD1C08655DC897E /* TrackShape.swift */,
 			);
 			path = KeepGenCore;
 			sourceTree = "<group>";
@@ -346,14 +361,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000F48B6193DAB349513FD8E /* Exporters.swift in Sources */,
 				0D752085858F8368FB273E4C /* Generator.swift in Sources */,
 				FD871DB68E23E9B441C2C84D /* HealthWriter.swift in Sources */,
 				1F09C2FCE8A3CEFA90642612 /* History.swift in Sources */,
 				D68C743A7528FE9A3CACC0CC /* HrProfile.swift in Sources */,
+				316F19482A4FED5C8D512DDB /* License.swift in Sources */,
+				C1FCC075AFCFC318753FD7C6 /* LicenseStore.swift in Sources */,
 				6C09130F53574D872CEFE23B /* Models.swift in Sources */,
 				846D5E6943899DC8452A29D9 /* Quota.swift in Sources */,
 				68719CD765CE411C21DCAF14 /* RouteLibrary.swift in Sources */,
 				E01F267875FBE7623E2C3219 /* Settings.swift in Sources */,
+				6705680F02108562FF0ED6A2 /* TrackShape.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +391,7 @@
 				8886868712CC5585AA3DA5E9 /* BatchView.swift in Sources */,
 				0167B7D1923292BE4CB1AC4D /* GenerateView.swift in Sources */,
 				4FD21959A0D210843F27AFC9 /* HistoryView.swift in Sources */,
+				9561F2B8B9DBCFF4AD7C0C91 /* LicenseGateView.swift in Sources */,
 				611D9CBBD393F5794D114C34 /* RootView.swift in Sources */,
 				021EE0367580E60500BDE5CF /* RouteView.swift in Sources */,
 				BC2E8AD661A2538A19194C0E /* SettingsView.swift in Sources */,
@@ -489,12 +509,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen;
 				PRODUCT_NAME = KeepGen;
 				SDKROOT = iphoneos;
@@ -621,12 +641,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen;
 				PRODUCT_NAME = KeepGen;
 				SDKROOT = iphoneos;
