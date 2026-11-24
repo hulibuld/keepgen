@@ -11,12 +11,12 @@ Android 版的 iOS 对应实现：SwiftUI 原生，用的是 Apple「健康」�
 
 | 包 | 给谁用 | 怎么装 |
 |---|---|---|
-| `KeepGen-1.1.0-adhoc.ipa`（官网名 `keepgen-ios-1.1.0-trollstore.ipa`） | iOS 14.0b2 – 16.6.1、16.7 RC、17.0 | 已带 `platform-application`，TrollStore 直接吃，永久有效 |
-| `KeepGen-1.1.0-unsigned.ipa` | iOS 17.0.1 及以上 | SideStore / AltStore / Sideloadly / 爱思自助签名，7 天续签 |
+| `KeepGen-1.2.0-adhoc.ipa`（官网名 `keepgen-ios-1.2.0-trollstore.ipa`） | iOS 14.0b2 – 16.6.1、16.7 RC、17.0 | 已带 `platform-application`，TrollStore 直接吃，永久有效 |
+| `KeepGen-1.2.0-unsigned.ipa` | iOS 17.0.1 及以上 | SideStore / AltStore / Sideloadly / 爱思自助签名，7 天续签 |
 
 ```
-unsigned  1,057,707 字节  3d8f421b111d4312c1788fdf35bad2d5644f02426631d56b166aca05325e59eb
-adhoc     1,084,897 字节  706a17c9bcdadb2d63d417210ae5662a0689f6c3756920612322f6b98a4a9794
+unsigned  1,089,008 字节  b19d1e65111025e77313cf1e15bab5c129a3332db336fec5c95cc4d695d21e10
+adhoc     1,118,163 字节  55f25f89b1e3b20b1d90dc0fba5d8e9309609f28b4aa32339e9647260443ef7e
 ```
 
 **HealthKit 权限是这一版的门槛**：`.app` 里带 `KeepGen.entitlements`（`com.apple.developer.healthkit` + `healthkit.access`）。用 SideStore / Sideloadly 自签时，工具会用你的免费 Apple ID 重新签一遍，**免费个人团队是支持 HealthKit 的**，所以写健康能成；如果自签后生成时提示「无法写入健康」，八成是签名工具丢了 entitlement，改用下面的 Xcode 方案跑一次即可。
@@ -99,6 +99,7 @@ payload: {"v":2,"c":"码","d":"设备号或*","e":过期毫秒,"n":"随机串","
 - 装完第一次打开停在兑换页，页面上写着**本机设备号**；把整串粘进去点「验证」就进主界面。
 - `d="*"` 的零售码在任意设备激活（首次激活绑这台机器）；`d="设备号"` 的码只能在指定设备用。
 - 客户端只有 P-256 公钥，**没有任何签发能力**。
+- 首次激活需要联网：客户端先离线验签，再向 `https://deepchat-writer.pages.dev/bind` 登记本机设备号，服务端确认这枚码没绑过别的机器才放行；服务端只认发行清单里的码。登记完成后生成全程离线，启动不联网。
 - 换手机或重装后设备号会变（Keychain 里存的 UUID；若系统把 ad-hoc 包的 Keychain 挡了会退回 UserDefaults），需要按新设备号换签。
 - 界面能看、参数能调，只有「生成」那一步会检查授权——和 Android 版口径一致。
 

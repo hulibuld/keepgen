@@ -8,6 +8,9 @@ public struct SettingsView: View {
     @ObservedObject var settings: AppSettings
     @ObservedObject var quota: QuotaStore
 
+    /// 使用须知常驻入口。
+    @State private var showTerms = false
+
     public init(settings: AppSettings, quota: QuotaStore) {
         self.settings = settings
         self.quota = quota
@@ -21,12 +24,16 @@ public struct SettingsView: View {
                 writeCard
                 unitCard
                 quotaCard
+                termsCard
                 aboutCard
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 20)
         }
         .task { quota.refresh() }
+        .sheet(isPresented: $showTerms) {
+            TermsView(mode: .sheet)
+        }
     }
 
     private var defaultCard: some View {
@@ -136,10 +143,23 @@ public struct SettingsView: View {
         }
     }
 
+    private var termsCard: some View {
+        Card {
+            SectionLabel("使用须知与免责声明")
+            Text("生成的是算法数据，不是真实运动；成绩申报、赛事、考核、保险、医疗等场景一律禁止使用。")
+                .font(.system(size: 11))
+                .foregroundStyle(Theme.dim)
+                .fixedSize(horizontal: false, vertical: true)
+            GhostButton("查看完整须知", systemImage: "doc.text", tint: Theme.ink) {
+                showTerms = true
+            }
+        }
+    }
+
     private var aboutCard: some View {
         Card {
             SectionLabel("关于")
-            KVRow("版本", "1.0.0 (1)")
+            KVRow("版本", "1.2.0 (3)")
             KVRow("数据范围", "只写本机健康，不联网")
             KVRow("活动", "户外跑步 / 室内跑步 / 户外行走 / 户外骑行")
             KVRow("卡路里", "round(体重 × 公里 × 1.036/0.85/0.5)")

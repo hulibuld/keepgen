@@ -20,8 +20,8 @@ bash gen_buildstamp.sh
 echo "[1/6] 同步版本号"
 sed -i '' "s/android:versionCode=\"[0-9]*\"/android:versionCode=\"$VCODE\"/" AndroidManifest.xml
 sed -i '' "s/android:versionName=\"[^\"]*\"/android:versionName=\"$VNAME\"/" AndroidManifest.xml
-sed -i '' "s/static final int VERSION_CODE = [0-9]*;/static final int VERSION_CODE = $VCODE;/" src/com/qianyuzhou/keepgen/BuildConfig.java
-sed -i '' "s/static final String VERSION_NAME = \"[^\"]*\";/static final String VERSION_NAME = \"$VNAME\";/" src/com/qianyuzhou/keepgen/BuildConfig.java
+sed -i '' "s/static final int VERSION_CODE = [0-9]*;/static final int VERSION_CODE = $VCODE;/" src/com/keepgen/hulibuld/BuildConfig.java
+sed -i '' "s/static final String VERSION_NAME = \"[^\"]*\";/static final String VERSION_NAME = \"$VNAME\";/" src/com/keepgen/hulibuld/BuildConfig.java
 
 echo "[2/6] javac"
 rm -rf build && mkdir -p build/classes build/dex
@@ -34,7 +34,7 @@ echo "[3/6] R8 混淆 + dex"
 # 之前误以为 SDK 里没有 r8.jar，实际在 cmdline-tools/latest/lib/ 下（8.9.27）。
 #
 # 混淆之后：License -> a.b.c，doGenerate -> a.b.d，
-# 用 strings 扫 dex 再也看不到 Lcom/qianyuzhou/keepgen/License; 这种明文。
+# 用 strings 扫 dex 再也看不到 Lcom/keepgen/hulibuld/License; 这种明文。
 # 破解从「看一眼就找到」变成「得先反混淆再逐个试」。
 R8JAR="$HOME/android-build/sdk/cmdline-tools/latest/lib/r8.jar"
 if [ ! -f "$R8JAR" ]; then
@@ -67,7 +67,6 @@ cd ..
 cd ..
 
 echo "[6/6] 签名"
-mkdir -p "$HERE/out"
 #
 # 密钥放在仓库外：~/.keepgen-keys/。
 # 红队 2026-11-22（R5/L-1）指出：私钥和口令一起进仓库，等于任何人拿到仓库

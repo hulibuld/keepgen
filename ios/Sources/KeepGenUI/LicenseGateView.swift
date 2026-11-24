@@ -17,6 +17,8 @@ public struct LicenseGateView: View {
     @State private var failure: String?
     @State private var device: String = ""
     @State private var copied = false
+    /// 正在向服务端登记本机设备号。
+    @State private var registering = false
 
     public init(gate: Bool = true,
                 store: LicenseStore = .shared,
@@ -116,7 +118,9 @@ public struct LicenseGateView: View {
                 }
                 .onChange(of: input) { _ in failure = nil }
 
-            PrimaryButton("验证 / 兑换", systemImage: "checkmark.shield", isEnabled: !input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+            PrimaryButton(registering ? "正在登记本机设备…" : "验证 / 兑换",
+                          systemImage: "checkmark.shield",
+                          isEnabled: !registering && !input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
                 redeem()
             }
 
@@ -130,6 +134,9 @@ public struct LicenseGateView: View {
                     .font(.system(size: 11))
                     .foregroundStyle(Theme.ok)
             }
+            Text("兑换时联网登记本机设备号；登记完成后生成全程离线。")
+                .font(.system(size: 10))
+                .foregroundStyle(Theme.faint)
         }
     }
 
@@ -180,17 +187,36 @@ public struct LicenseGateView: View {
 
     private func redeem() {
         let voucher = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !voucher.isEmpty else { return }
+        guard !voucher.isEmpty, !registering else { return }
+
+        // 1. 本地验签：签名不对 / 不是本机 / 过期，直接挡，不打扰服务端。
         let result = LicenseVerifier.evaluate(voucher, currentDevice: store.deviceId())
-        state = store.state()
-        if result.allowsGeneration {
-            store.saveEnvelope(voucher)
-            state = store.state()
-            failure = nil
-            input = ""
-            onUnlocked()
-        } else {
+        guard case .active(let claims) = result else {
             failure = "\(result.displayTitle)：\(result.displayDetail)"
+            state = store.state()
+            return
+        }
+
+        // 2. 首激活设备登记：成功才落盘凭证。
+        registering = true
+        failure = nil
+        Task { @MainActor in
+            let outcome = await store.registerActivation(code: claims.code, deviceId: store.deviceId())
+            registering = false
+            switch outcome {
+            case .allowed:
+                store.saveEnvelope(voucher)
+                state = store.state()
+                failure = nil
+                input = ""
+                onUnlocked()
+            case .deviceMismatch(let bound):
+                state = store.state()
+                failure = "这枚码已经绑在另一台设备上（\(bound)）。换机请联系作者换签。"
+            case .network:
+                state = store.state()
+                failure = "首次激活需要联网。连上网再点一次，激活后可以离线生成。"
+            }
         }
     }
 

@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - 心率模型（Karvonen 心率储备法）
 
-/// 逐字移植 Android 版未混淆源码 `com.qianyuzhou.keepgen.HrProfile`。
+/// 逐字移植 Android 版的 HrProfile 实现。
 ///
 /// 用户填三个数：静息心率、最高心率、最快 1 公里配速（秒）。
 ///   HRR   = max − rest

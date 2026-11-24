@@ -35,16 +35,22 @@ public struct RootView: View {
     @StateObject private var settings = AppSettings.shared
     @StateObject private var quota = QuotaStore.shared
     @State private var tab: Tab = .generate
-    /// 每次现算（验签 + 绑机 + 有效期），不缓存「已激活」布尔值。
+    /// 每次现算（验签 + 绑机 + 有效期），不缓存「已激活」布尔值。门禁只看本地凭证，不联网。
     @State private var license: LicenseState = LicenseStore.shared.state()
     @State private var showLicense = false
+    /// 使用须知的同意状态；首次启动时拦在兑换页之前。
+    @AppStorage(TermsView.acceptedKey) private var termsAccepted = false
 
     public init() {}
 
     public var body: some View {
         ZStack {
             Theme.bg.ignoresSafeArea()
-            if license.allowsGeneration {
+            if !termsAccepted {
+                TermsView(mode: .gate) {
+                    termsAccepted = true
+                }
+            } else if license.allowsGeneration {
                 VStack(spacing: 0) {
                     header
                     Group {

@@ -29,6 +29,7 @@
 		89BC9488912A7897D833D5F9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E270A402B732E0B4FD3573F7 /* HealthKit.framework */; };
 		9530E982C4594740B21BEBD5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EE4231525FE381F92CA16D /* CoreLocation.framework */; };
 		9561F2B8B9DBCFF4AD7C0C91 /* LicenseGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEB72C15B98A0252F4B5BD8 /* LicenseGateView.swift */; };
+		A32E181D2C03F91DCCA4FF1E /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55151A6E3AA6986ACCACCEC4 /* TermsView.swift */; };
 		AC00F3C4883C4EDEFEC9EC36 /* KeepGenCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AAE0586ADC82097794B6458 /* KeepGenCore.framework */; };
 		BC2E8AD661A2538A19194C0E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35674A506D3DA9BDC4D095C /* SettingsView.swift */; };
 		C1FCC075AFCFC318753FD7C6 /* LicenseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4D5BA471DDCF59EB49D5B4 /* LicenseStore.swift */; };
@@ -90,6 +91,7 @@
 		41A7AC18B98F3A87A068AEC7 /* Exporters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporters.swift; sourceTree = "<group>"; };
 		41FCD81DC4343B8E3998DD20 /* HealthWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthWriter.swift; sourceTree = "<group>"; };
 		50BB37CD7485DCA18F2411B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		55151A6E3AA6986ACCACCEC4 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
 		58052FB7B81E34B5B7A4E59F /* KeepGen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KeepGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AAE0586ADC82097794B6458 /* KeepGenCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeepGenCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		697EE63F73F428B937A85046 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				935641973C641C42FABACD8F /* RootView.swift */,
 				835B9B4A5DE2D026DED02877 /* RouteView.swift */,
 				D35674A506D3DA9BDC4D095C /* SettingsView.swift */,
+				55151A6E3AA6986ACCACCEC4 /* TermsView.swift */,
 				25825DF145C0DC6740597058 /* Theme.swift */,
 			);
 			path = KeepGenUI;
@@ -395,6 +398,7 @@
 				611D9CBBD393F5794D114C34 /* RootView.swift in Sources */,
 				021EE0367580E60500BDE5CF /* RouteView.swift in Sources */,
 				BC2E8AD661A2538A19194C0E /* SettingsView.swift in Sources */,
+				A32E181D2C03F91DCCA4FF1E /* TermsView.swift in Sources */,
 				DC0BF7AE93660961DB39D022 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,12 +433,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Config/KeepGenUI-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen.ui;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepgen.hulibuld.ui;
 				PRODUCT_NAME = KeepGenUI;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -509,13 +514,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen;
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepgen.hulibuld;
 				PRODUCT_NAME = KeepGen;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -599,12 +604,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Config/KeepGenCore-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen.core;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepgen.hulibuld.core;
 				PRODUCT_NAME = KeepGenCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -622,12 +628,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Config/KeepGenUI-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen.ui;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepgen.hulibuld.ui;
 				PRODUCT_NAME = KeepGenUI;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -641,13 +648,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen;
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepgen.hulibuld;
 				PRODUCT_NAME = KeepGen;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -663,12 +670,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Config/KeepGenCore-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanchuan.keepgen.core;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepgen.hulibuld.core;
 				PRODUCT_NAME = KeepGenCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

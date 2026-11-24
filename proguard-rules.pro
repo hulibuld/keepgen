@@ -5,7 +5,7 @@
 #
 # 混淆后能达成的效果：
 #   · 类名 / 方法名 / 字段名全部变成 a、b、c
-#   · strings classes.dex 扫不到 Lcom/qianyuzhou/keepgen/License;
+#   · strings classes.dex 扫不到 Lcom/keepgen/hulibuld/License;
 #   · AI 读代码时看到的是一堆无意义符号，得先花时间还原语义
 
 # ---- 四大组件（按名字从 manifest 引用，不能改）----
@@ -32,14 +32,14 @@
 #
 # 必须继续用 -keep class <全限定名>，不能用 -keepclassmembers：
 # 下面有 -repackageclasses ''，一旦类名也被允许改名，R8 会把 MainActivity
-# 搬出 com.qianyuzhou.keepgen，manifest 里的 .MainActivity 解析不到，
+# 搬出 com.keepgen.hulibuld，manifest 里的 .MainActivity 解析不到，
 # 装上点开就是 ClassNotFoundException。
--keep class com.qianyuzhou.keepgen.MainActivity { <init>(...); }
--keep class com.qianyuzhou.keepgen.KeepAuto { <init>(...); }
--keep class com.qianyuzhou.keepgen.ApkProvider { <init>(...); }
+-keep class com.keepgen.hulibuld.MainActivity { <init>(...); }
+-keep class com.keepgen.hulibuld.KeepAuto { <init>(...); }
+-keep class com.keepgen.hulibuld.ApkProvider { <init>(...); }
 
 # ---- 常量类（避免被当成无用代码删掉）----
--keep class com.qianyuzhou.keepgen.BuildConfig { *; }
+-keep class com.keepgen.hulibuld.BuildConfig { *; }
 
 # ---- Android 框架回调 ----
 -keepclassmembers class * {

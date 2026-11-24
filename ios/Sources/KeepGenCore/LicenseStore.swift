@@ -15,7 +15,7 @@ public final class LicenseStore {
     public static let shared = LicenseStore()
 
     /// Keychain service（与 Android 端 keystore 无关，这是 iOS 侧独立命名空间）。
-    public static let keychainService = "com.qianyuzhou.keepgen.ios"
+    public static let keychainService = "com.keepgen.hulibuld"
 
     private enum Account {
         static let device = "device-id"
@@ -75,6 +75,59 @@ public final class LicenseStore {
         let current = state(now: now)
         guard !current.allowsGeneration else { return nil }
         return "\(current.displayTitle)：\(current.displayDetail) 请先到「授权」兑换 1 元兑换码再生成。"
+    }
+
+    // MARK: - 首激活设备登记
+
+    /// 首激活设备登记服务。端点只在这里写一次，别处不要另写字符串。
+    public static let bindEndpoint = URL(string: "https://deepchat-writer.pages.dev/bind")!
+
+    /// 兑换时的登记结果。
+    public enum BindResult: Sendable, Equatable {
+        /// 服务端放行：本来就是本机登记过（first = true 首次，false 是重装后再次登记）。
+        case allowed(first: Bool, count: Int)
+        /// 这枚码已经绑在别的设备上，必须拦。
+        case deviceMismatch(bound: String)
+        /// 联网失败 / 服务端异常。
+        case network(String)
+    }
+
+    /// 本地验签通过后调用：把码本机设备号报到服务端，登记成功才算激活。
+    /// 只在兑换时走这一条，启动时的门禁判断不联网。
+    public func registerActivation(code: String, deviceId: String) async -> BindResult {
+        var request = URLRequest(url: LicenseStore.bindEndpoint)
+        request.httpMethod = "POST"
+        request.timeoutInterval = 20
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: [
+            "code": code,
+            "deviceId": deviceId
+        ])
+
+        let data: Data
+        let response: URLResponse
+        do {
+            (data, response) = try await URLSession.shared.data(for: request)
+        } catch {
+            return .network(error.localizedDescription)
+        }
+
+        guard let http = response as? HTTPURLResponse else {
+            return .network("服务端响应异常")
+        }
+        let object = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
+
+        switch http.statusCode {
+        case 200..<300:
+            let first = (object?["first"] as? Bool) ?? true
+            let count = (object?["count"] as? NSNumber)?.intValue ?? 1
+            return .allowed(first: first, count: count)
+        case 409:
+            return .deviceMismatch(bound: (object?["bound"] as? String) ?? "")
+        default:
+            return .network("服务端返回 HTTP \(http.statusCode)")
+        }
     }
 
     // MARK: - Keychain 原语

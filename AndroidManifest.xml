@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.qianyuzhou.keepgen"
-    android:versionCode="156"
-    android:versionName="32.6">
+    package="com.keepgen.hulibuld"
+    android:versionCode="134"
+    android:versionName="30.0">
 
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
 
@@ -49,8 +49,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="adjustResize">
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -64,8 +63,7 @@
             android:name=".HcPermActivity"
             android:exported="true"
             android:label="写入健康数据"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="adjustResize">
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.health.connect.action.SHOW_PERMISSIONS_RATIONALE" />
             </intent-filter>
@@ -85,26 +83,22 @@
         <activity
             android:name=".KeepLoginActivity"
             android:exported="false"
-            android:configChanges="orientation|screenSize|keyboardHidden" 
-            android:windowSoftInputMode="adjustResize" />
+            android:configChanges="orientation|screenSize|keyboardHidden" />
 
         <activity
             android:name=".SettingsActivity"
             android:exported="false"
-            android:configChanges="orientation|screenSize|keyboardHidden" 
-            android:windowSoftInputMode="adjustResize" />
+            android:configChanges="orientation|screenSize|keyboardHidden" />
 
         <activity
             android:name=".BatchActivity"
             android:exported="false"
-            android:configChanges="orientation|screenSize|keyboardHidden" 
-            android:windowSoftInputMode="adjustResize" />
+            android:configChanges="orientation|screenSize|keyboardHidden" />
 
         <activity
             android:name=".KeepListActivity"
             android:exported="false"
-            android:configChanges="orientation|screenSize|keyboardHidden" 
-            android:windowSoftInputMode="adjustResize" />
+            android:configChanges="orientation|screenSize|keyboardHidden" />
 
         <!-- 自动导入 Keep：界面树 + 手势点击 -->
         <service
@@ -122,7 +116,7 @@
 
         <provider
             android:name=".ApkProvider"
-            android:authorities="com.qianyuzhou.keepgen.apk"
+            android:authorities="com.keepgen.hulibuld.apk"
             android:exported="false"
             android:grantUriPermissions="true" />
     </application>
